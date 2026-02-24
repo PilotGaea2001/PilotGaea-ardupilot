@@ -182,3 +182,7 @@ Tools/bootloaders/*.hex
 
 # SITL runtime
 *.pid
+build.log
+Tools/bootloaders/*.bin
+Tools/bootloaders/*.hex
+modules/littlefs/
