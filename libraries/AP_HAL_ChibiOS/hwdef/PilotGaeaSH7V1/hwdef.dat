@@ -5,8 +5,7 @@
 MCU STM32H7xx STM32H743xx
 
 # board ID for firmware load
-# Temporary BOARD_ID for development / PR
-APJ_BOARD_ID 9999
+APJ_BOARD_ID 1213
 
 # crystal frequency, setup to use external oscillator
 OSCILLATOR_HZ 8000000
