@@ -26,9 +26,9 @@ The PilotGaeaSH7V1 is a flight controller designed and produced by PilotGaea
 
 ## Physical and pinout
 
-![PilotGaeaSH7V1 front view](PilotGaeaSH7V1_front_view_Pin.jpg)
+![PilotGaeaSH7V1 front view](./PilotGaeaSH7V1_front_view_Pin.jpg)
 
-![PilotGaeaSH7V1 rear view](PilotGaeaSH7V1_rear_view_Pin.jpg)
+![PilotGaeaSH7V1 rear view](./PilotGaeaSH7V1_rear_view_Pin.jpg)
 
 ## Power supply
 
@@ -64,10 +64,9 @@ The default RC input is configured on the UART6 and supports all RC protocols ex
 
 The PilotGaeaSH7V1 Supports onboard analog OSD using the AT7456 chip.The composited image is output via the VTX pin.
 
-## PWM Output
+## PWM Output and DShot
 
-The PilotGaeaSH7V1 supports up to 11 PWM outputs.
-All the channels support DShot.
+The PilotGaeaSH7V1 supports up to 11 PWM outputs, All the channels support DShot.
 Outputs are grouped and every output within a group must use the same output protocol:
 
 1, 2 are Group 1;

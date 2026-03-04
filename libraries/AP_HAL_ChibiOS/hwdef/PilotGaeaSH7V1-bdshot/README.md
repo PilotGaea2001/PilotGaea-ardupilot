@@ -26,9 +26,9 @@ The PilotGaeaSH7V1 is a flight controller designed and produced by PilotGaea
 
 ## Physical and pinout
 
-![PilotGaeaSH7V1 front view](PilotGaeaSH7V1_front_view_Pin.jpg)
+![PilotGaeaSH7V1 front view](./PilotGaea_front_view_Pin.jpg)
 
-![PilotGaeaSH7V1 rear view](PilotGaeaSH7V1_rear_view_Pin.jpg)
+![PilotGaeaSH7V1 rear view](./PilotGaea_rear_view_Pin.jpg)
 
 ## Power supply
 
@@ -64,18 +64,26 @@ The default RC input is configured on the UART6 and supports all RC protocols ex
 
 The PilotGaeaSH7V1 Supports onboard analog OSD using the AT7456 chip.The composited image is output via the VTX pin.
 
-## PWM Output
+## PWM Output and DShot
 
-The PilotGaeaSH7V1 supports up to 11 PWM outputs.
-All the channels support DShot.
-Outputs are grouped and every output within a group must use the same output protocol:
+The PilotGaeaSH7V1 supports up to 11 PWM outputs.organized into 5 independent timer groups. All groups support DShot, but **Bi-directional DShot (BDShot)** is optimized for Groups 1-3.
 
-1, 2 are Group 1;
-3, 4, 5, 6 are Group 2;
-7, 8 are Group 3;
-11, 12 are Group 4;
-13(LED) is Group 5;
-Output 13 can be used as LED neopixel output;
+### PWM Grouping Table
+
+| Group | PWM Output | Timer | BDShot Support (hwdef-bl) | Recommended Use |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | 1, 2 | TIM8 | **Full (DMA)** | Motors 1-2 |
+| **2** | 3, 4, 5, 6 | TIM5 | **Full (DMA)** | Motors 3-6 |
+| **3** | 7, 8 | TIM4 | **Full (DMA)** | Motors 7-8 |
+| **4** | 11, 12 | TIM15 | No (NODMA) | Servos / Auxiliary |
+| **5** | 13 (LED) | TIM1 | No (NODMA) | NeoPixel / WS2812 |
+
+### Bi-directional DShot Configuration
+To use BDShot for RPM filtering, you must flash the `PilotGaeaSH7V1-bdshot` firmware. 
+- **Outputs 1-8:** Fully optimized with dedicated DMA resources to ensure stable DShot600 performance and telemetry feedback.
+- **Outputs 11-13:** Configured with `NODMA`. While they support standard PWM/DShot, they do not support RPM telemetry. This design prioritizes DMA bandwidth for the primary IMU (SPI1) and core motor functions.
+
+> **Note:** Every output within a group must use the same output protocol (e.g., if Output 3 is set to DShot, Outputs 4, 5, and 6 must also be DShot).
 
 ## Battery Monitoring
 
